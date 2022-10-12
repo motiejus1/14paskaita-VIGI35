@@ -1,9 +1,17 @@
 <?php include "classes/Klientai-class.php"; ?>
 <?php $klientai = new Klientai(); ?>
-<?php //var_dump($klientai->klientai); ?>
 <div class="row">
     <div class="col-lg-8">
         <h1>Klientai</h1>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <?php include "components/sortForm.php"; ?>
+    </div>
+    <div class="col-lg-4">
+        <?php include "components/filterForm.php"; ?>
     </div>    
 </div>
 <div class="row">

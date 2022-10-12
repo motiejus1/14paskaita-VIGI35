@@ -1,10 +1,12 @@
 <?php
 
 include "utilities/FileManger.php";
+include "utilities/Sortable.php";
+include "utilities/Filter.php";
 
 class Klientai {
 
-    use FileManager;
+    use FileManager, Sortable, Filter;
 
     // public $file;
     // public $data;
@@ -21,6 +23,14 @@ class Klientai {
 
 
     public $klientai = [];
+    public $collumns = array(
+        "vardas" => "Vardas",
+        "pavarde" => "Pavarde",
+        "amzius" => "Amzius",
+        "miestas" => "Miestas"
+    );
+
+    public $cities = []; 
 
     public function __construct() {
         //nurodau koki faila nuskaitau
@@ -28,7 +38,31 @@ class Klientai {
         //nauskaitau faila - $data;
         $this->readFile();
         $this->klientai = $this->data;
+        //rikiuojam
+        $this->klientai = $this->sort($this->klientai);
+        //filtruojam
+        $this->klientai = $this->filter($this->klientai, "miestas" );
     }
+
+    public function getCollumns() {
+        return $this->collumns;
+    }
+
+    function getCities() {
+        $this->readFile();
+        $klientai= $this->data;
+        foreach ($klientai as $klientas) {
+            $this->cities[] = $klientas["miestas"];
+        }
+    
+        $this->cities=array_unique($this->cities);
+
+        return $this->cities;
+    
+    }
+
+
+
 
     // public function showClients() {
     //     foreach($this->klientai as $key => $klientas) {
