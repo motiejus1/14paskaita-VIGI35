@@ -26,7 +26,7 @@
                 </tr>
                 <?php //$klientai->showClients(); ?>
                 <!-- Klaseje turi buti kuo maziau kodo kuris atsakingas uz atvaizdavima -->
-                <?php foreach($klientai->klientai as $key => $klientas) { ?>
+                <?php foreach($klientai->getClients() as $key => $klientas) { ?>
                     <tr>
                         <td><?php echo $key; ?></td>
                         <td><?php echo $klientas["vardas"]; ?></td>

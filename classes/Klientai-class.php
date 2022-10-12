@@ -22,15 +22,15 @@ class Klientai {
 
 
 
-    public $klientai = [];
-    public $collumns = array(
+    protected $klientai = [];
+    protected $collumns = array(
         "vardas" => "Vardas",
         "pavarde" => "Pavarde",
         "amzius" => "Amzius",
         "miestas" => "Miestas"
     );
 
-    public $cities = []; 
+    protected $cities = []; 
 
     public function __construct() {
         //nurodau koki faila nuskaitau
@@ -44,6 +44,10 @@ class Klientai {
         $this->klientai = $this->filter($this->klientai, "miestas" );
     }
 
+    public function getClients() {
+        return $this->klientai;
+    }
+
     public function getCollumns() {
         return $this->collumns;
     }
@@ -54,7 +58,11 @@ class Klientai {
         foreach ($klientai as $klientas) {
             $this->cities[] = $klientas["miestas"];
         }
-    
+        
+        //1. kreipsimes tiesiogiai mes gauism arba tuscia masyva, dalini masyva(bus neisrinkti dublikatai)
+        //2. $this->cities
+        //3. zmogiskosios klaidos 
+
         $this->cities=array_unique($this->cities);
 
         return $this->cities;
