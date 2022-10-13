@@ -30,8 +30,7 @@ class Klientai {
         "miestas" => "Miestas"
     );
 
-    protected $cities = []; 
-
+    //konstruktorius - pagal nutylejima yra statinis metodas
     public function __construct() {
         //nurodau koki faila nuskaitau
         $this->file = "klientai.json";
@@ -48,26 +47,15 @@ class Klientai {
         return $this->klientai;
     }
 
+
+    //jei $collumns butu statinis
+    //getCollumns() mes galime padaryti statiniu?
+
+    //jei norime isvesti statini parametra, musu metodas gali buti statinis
     public function getCollumns() {
         return $this->collumns;
     }
 
-    function getCities() {
-        $this->readFile();
-        $klientai= $this->data;
-        foreach ($klientai as $klientas) {
-            $this->cities[] = $klientas["miestas"];
-        }
-        
-        //1. kreipsimes tiesiogiai mes gauism arba tuscia masyva, dalini masyva(bus neisrinkti dublikatai)
-        //2. $this->cities
-        //3. zmogiskosios klaidos 
-
-        $this->cities=array_unique($this->cities);
-
-        return $this->cities;
-    
-    }
 
 
 
